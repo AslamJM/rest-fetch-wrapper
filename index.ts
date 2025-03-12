@@ -2,7 +2,6 @@
 type RestResponseType<T> = T | {
     message: string
 }
-
 class RestFetchWrapper {
 
     baseUrl: string
@@ -47,7 +46,7 @@ class RestFetchWrapper {
             const response = await fetch(url, reqOptions)
             const status = response.status
 
-            if ((status === 401 || status === 403) && retry) {
+            if ((status === 401) && retry) {
                 const newToken = await this.refreshToken()
                 if (newToken) {
                     this.accessToken = newToken
@@ -137,3 +136,5 @@ class RestFetchWrapper {
         }
     }
 }
+
+export default RestFetchWrapper
